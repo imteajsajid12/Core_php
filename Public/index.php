@@ -32,37 +32,51 @@
 
 <?php
 
+//
+//$user= $_GET['email'];
+//$passwords = trim(strtolower($_GET['password']));
+//
+////mysqli connection
+//$servername = "db";
+//$username = "user";
+//$password = "pass";
+//$dbname = "database";
+//
+//// Create connection
+//$conn = new mysqli($servername, $username, $password, $dbname);
+//
+//// Check connection
+//if ($conn->connect_error) {
+//    die("Connection failed: " . $conn->connect_error);
+//}
+//
+//echo "Connected successfully";
+//
+//
+////insert data
+//$sql = "INSERT INTO users (name, email, password) VALUES ('imteaj', '$user' , '$passwords')";
+//if ($conn->query($sql) === TRUE) {
+//    echo "Data inserted successfully";
+//} else {
+//    echo "Error inserting data: " . $conn->error;
+//}
 
-$user= $_GET['email'];
-$passwords = trim(strtolower($_GET['password']));
 
-//mysqli connection
+// pdo connection
 $servername = "db";
 $username = "user";
 $password = "pass";
 $dbname = "database";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+try {
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    echo "Connected successfully";
+} catch(PDOException $e) {
+    echo "Connection failed: " . $e->getMessage();
 }
-
-echo "Connected successfully";
-
-
-//insert data
-$sql = "INSERT INTO users (name, email, password) VALUES ('imteaj', '$user' , '$passwords')";
-if ($conn->query($sql) === TRUE) {
-    echo "Data inserted successfully";
-} else {
-    echo "Error inserting data: " . $conn->error;
-}
-
-
 ?>
+
 
 
 
