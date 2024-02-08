@@ -7,16 +7,16 @@ $password = "pass";
 $dbname = "database";
 
 try {
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $Conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $Conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     //assoc array
-    $conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+    $Conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     echo "Connected successfully";
 } catch (PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
 }
-/** @var mixed $conn */
-$stmt = $conn->prepare("SELECT * FROM users");
+/** @var mixed $Conn */
+$stmt = $Conn->prepare("SELECT * FROM users");
 
 $stmt->execute();
 
