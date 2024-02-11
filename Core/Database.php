@@ -2,58 +2,65 @@
 
 namespace Core;
 
-
-class Database
+// create a new database class
+class  Database
 {
+    public $connection;
+    public $statment;
 
-    protected mixed $connection;
-    protected mixed $statement;
-
-
-    public function __construct($username = "user", $password = "pass")
+    public function __construct($username = 'user', $password = 'pass')
     {
         $config = [
             'host' => 'db',
+            'port' => '3306',
             'user' => 'user',
             'password' => 'pass',
-            'dbname' => 'database'
+            'dbname' => 'database',
+            'charset' => 'utf8'
         ];
+
         $con = 'mysql:' . http_build_query($config, '', ';');
         $this->connection = new \PDO($con, $username, $password, [
-            \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC
+            // PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+            \PDO::ATTR_ERRMODE => \PDO::ERRMODE_SILENT
+//            assoc array
+//      \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC
+
+
         ]);
+
     }
 
-//add query
-    public function query($query, $data = [])
+    public function query($data, $perams = [])
     {
-        $this->statement = $this->connection->prepare($query);
-        $this->statement->execute($data);
+        $this->statment = $this->connection->prepare($data);
+        $this->statment->execute($perams);
         return $this;
-
-
     }
-//    get statement
-    public function get()
+
+    public function find()
     {
-        return $this->statement->fetch();
+        return $this->statment->fetch();
     }
-    //get all statement
-    public function all(){
-        return $this->statement->fetchAll();
-    }
-//    find statement
-    public function find(){
-        return $this->statement->fetch();
-    }
-//    findOrFail statement
-    public function FindOrFail(){
-        $result=$this->statement->fetch();
-        if($result) {
-            http_response_code(404);
-            echo "404";
-            die();
+
+    public function FindOrFail()
+    {
+        $result = $this->find();
+        if (!$result) {
+            abord(404);
         }
         return $result;
     }
+
+    public function get()
+    {
+        return $this->statment->fetch();
+    }
+
+    //all
+    public function all()
+    {
+        return $this->statment->fetchAll();
+    }
+
 }

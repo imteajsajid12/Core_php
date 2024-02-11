@@ -1,3 +1,8 @@
 <?php
+//use Core\Routes;
 
-echo "Welcome to loginpage";
+function index1()
+{
+//    $_SESSION['name'] = "imteaj";
+    view('BackEnd/login.php');
+}

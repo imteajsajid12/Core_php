@@ -1,6 +1,6 @@
 <?php
-
-include (\Index\BASE_PATH . '/View/BackEnd/procted/header.php');
+include base_path() . 'View/BackEnd/procted/header.php';
+echo($_SESSION['name']);
 ?>
 <body class="bg-gradient-primary">
 
