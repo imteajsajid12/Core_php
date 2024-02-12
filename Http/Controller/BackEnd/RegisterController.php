@@ -2,6 +2,10 @@
 
 use Core\Validation;
 
+
+
+
+
 $database = new \Core\Database();
 require base_path('/Core/Validation.php'); // path to the validation
 

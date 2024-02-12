@@ -5,7 +5,6 @@ global $data;
 
 use Core\Validation;
 
-require base_path('Core/Validation.php');
 
 /** @var mixed $data */
 
@@ -23,7 +22,7 @@ function index()
 
 function create()
 {
-    echo 'Creating';
+
     $Errors = [];
     $data = new \Core\Database();
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -35,7 +34,7 @@ function create()
         if (!Validation::string($_POST['slug'], 5, 255)) {
             $Errors['errors'] = 'slug is required';
         }
-        print_r($Errors);
+//        print_r($Errors);
         //insert roles
         if (empty($Errors)) {
 

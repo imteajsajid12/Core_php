@@ -2,47 +2,67 @@
 
 namespace Core;
 
+
+
+use Core\Middlewares\Auth;
+
 class Routes
 {
 public $routes = [];
 
- public  function add($method, $url, $controller,$function){
+ public  function add($method, $url, $controller,$function)
+ {
     $this->routes[] = [
         'uri' => $url,
         'controller' => $controller,
         'method' => $method,
         'function' => $function,
+        'Middleware' => null,
     ];
+    return $this;
 }
 //get all routes
 
-public function get($url, $controller, $function) {
-    $this->add('GET', $url, $controller, $function);
+public function get($url, $controller, $function)
+{
+  return  $this->add('GET', $url, $controller, $function);
 }
-public function Post($url, $controller,$function){
-    $this->add('POST', $url, $controller,$function);
+public function Post($url, $controller,$function)
+{
+   return $this->add('POST', $url, $controller,$function);
 }
-public function put($url, $controller,$function){
-    $this->add('PUT', $url, $controller,$function );
+public function put($url, $controller,$function)
+{
+   return $this->add('PUT', $url, $controller,$function );
 }
-public function patch($url, $controller,$function){
-    $this->add('PATCH', $url, $controller,$function);
+public function patch($url, $controller,$function)
+{
+  return  $this->add('PATCH', $url, $controller,$function);
 }
-public function delete($url, $controller,$function){
-    $this->add('DELETE', $url, $controller,$function);
+public function delete($url, $controller,$function)
+{
+  return  $this->add('DELETE', $url, $controller,$function);
 }
+public function auth($key)
+{
+    //add middleware
+    $this->routes[array_key_last($this->routes)]['Middleware'] = $key;
+//    print_r($this->routes);
+}
+
+
 //valid  ROUTER check
     public function router($url, $method)
     {
         foreach ($this->routes as $route) {
             /** @var resource $route */
             if ($route['method'] === $method  && $route['uri'] === $url) {
+              require base_path('/Core/Middlewares/Middleware.php');
                 //call function name
-                include base_path($route['controller']);
+//                path
+                include base_path('/Http/Controller/' . $route['controller']);
                 $route['function']();
                 return;
-//                return require base_path($route['controller']).hello();
-//                return require base_path($route['controller']).'.'.'/';
             }
 
         }
@@ -55,9 +75,6 @@ public function delete($url, $controller,$function){
         echo "404";
         die();
     }
-
-
-
 }
 
 $router= new Routes();
@@ -66,3 +83,4 @@ $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 $method = $_POST['method'] ?? $_SERVER['REQUEST_METHOD'];
 //echo $method;
 $router->router($uri, $method, );
+

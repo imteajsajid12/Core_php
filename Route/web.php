@@ -3,13 +3,14 @@
 
 
 /** @var mixed $router */
-$router->get('/Admin/login', '/Controller/BackEnd/loginController.php', 'index1');
+$router->get('/Admin/login', '/BackEnd/LoginControllers.php', 'index');
+$router->post('/Admin/login', '/BackEnd/LoginControllers.php', 'create');
 //home
 //$router->get('/Admin/home', '/Controller/BackEnd/Home /Controller.php','index');
 //
-$router->get('/Admin/role', '/Controller/BackEnd/RoleController.php', 'index');
+$router->get('/Admin/role', '/BackEnd/RoleController.php', 'index')->auth('Auth');
 
-$router->post('/Admin/role/create', '/Controller/BackEnd/RoleController.php', 'create');
+$router->post('/Admin/role/create', '/BackEnd/RoleController.php', 'create');
 ////
 //
 //

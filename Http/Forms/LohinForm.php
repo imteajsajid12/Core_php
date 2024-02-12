@@ -1,0 +1,36 @@
+<?php
+
+namespace Http\Forms;
+
+class LohinForm
+{
+    /**
+     * @var array
+     */
+    protected $Errors=[];
+public  function __construct(){
+
+}
+
+public function validate($email , $password): array
+{
+    //validation
+    if (!\Core\Validator::string($email, 5, 255)) {
+        $this->Errors['errors'] = 'Email is required';
+    }
+    if (!\Core\Validator::string($password, 6, 255)) {
+        $this->Errors['errors'] = 'Password is required';
+    }
+//    print_r($Errors);
+    return $this->Errors;
+
+}
+
+    /**
+     * @return array
+     */
+    public function getErrors(): array
+    {
+        return $this->Errors;
+    }
+}

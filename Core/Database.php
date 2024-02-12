@@ -22,9 +22,9 @@ class  Database
         $con = 'mysql:' . http_build_query($config, '', ';');
         $this->connection = new \PDO($con, $username, $password, [
             // PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-            \PDO::ATTR_ERRMODE => \PDO::ERRMODE_SILENT
+//            \PDO::ATTR_ERRMODE => \PDO::ERRMODE_SILENT
 //            assoc array
-//      \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC
+      \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC
 
 
         ]);
@@ -62,5 +62,6 @@ class  Database
     {
         return $this->statment->fetchAll();
     }
+
 
 }

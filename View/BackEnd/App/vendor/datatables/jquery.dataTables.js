@@ -1093,7 +1093,7 @@
 						_fnInitialise( oSettings );
 					},
 					error: function () {
-						// Error occurred loading language file, continue on as best we can
+						// Validator occurred loading language file, continue on as best we can
 						_fnInitialise( oSettings );
 					}
 				} );
@@ -13963,7 +13963,7 @@
 	
 	
 		/**
-		 * Error reporting.
+		 * Validator reporting.
 		 * 
 		 * How should DataTables report an error. Can take the value 'alert',
 		 * 'throw', 'none' or a function.
