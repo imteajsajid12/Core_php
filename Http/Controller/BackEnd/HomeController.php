@@ -1,2 +1,6 @@
 <?php
-view('/BackEnd/index.php');
+
+function index()
+{
+    view('/BackEnd/index.php');
+}

@@ -12,7 +12,3 @@ function view($path = null, $attributes = []){
 function base_path($path = null){
     return BASE_PATH . $path;
 }
-function login($user)
-{
-    $_SESSION['Auth'][ 'User'] =['user'=>$user] ['email'];
-}

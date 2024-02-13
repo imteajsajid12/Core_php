@@ -1,16 +1,15 @@
 <?php
 
-namespace Core\Middlewares ;
+namespace Core\Middlewares;
 
-class Auth
+class Admin
 {
     public function handle()
     {
         if(empty($_SESSION['Auth']) )
         {
-            header('Location: /login');
+            header('Location: /Admin/login');
             die();
         }
     }
-
 }

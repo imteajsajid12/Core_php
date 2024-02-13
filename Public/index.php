@@ -15,6 +15,6 @@ require( BASE_PATH.'/Core/Config.php') ;// include the config
 
 //require( BASE_PATH.'/Core/Config.php') ;// include the config
 
-echo $_SESSION['Auth'];
+
 
 
