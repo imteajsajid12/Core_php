@@ -23,7 +23,7 @@ require( BASE_PATH.'/Core/Config.php') ;// include the config
 //\Core\Routes::test( '/','jnafaf','admin');
 //\Core\Routes::test( '/','jnafaf','admin');
 //\Core\Routes::test( '/','jnafaf','admin');
-
+unset($_SESSION['__route']["Auths"]);
 
 
 

@@ -13,5 +13,6 @@ class Admin
             header('Location: /Admin/login');
             die();
         }
+
     }
 }

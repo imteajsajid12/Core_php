@@ -2,5 +2,5 @@
 
 function index()
 {
-    view('BackEnd/index.php');
+    view('BackEnd/home.view.php');
 }

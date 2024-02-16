@@ -1,7 +1,13 @@
 <?php
-function index()
+
+namespace Http\Controller;
+
+class HomeController
 {
-    view('Frontend/home.view.php',[
-        'Errors' => "",
-    ]);
+  public function index()
+  {
+      view('Frontend/home.view.php',[
+          'Errors' => "",
+      ]);
+  }
 }

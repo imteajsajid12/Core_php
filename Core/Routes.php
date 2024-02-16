@@ -4,50 +4,55 @@ namespace Core;
 
 
 
-use Http\Controller\DController;
-
 class Routes
 {
-public $routes = [];
+    protected $routes = [];
+//    public $auth;
 
- public  function add($method, $url, $controller,$function)
+// global variable
+
+
+    public function add($method, $url, $controller)
  {
     $this->routes[] = [
         'uri' => $url,
         'controller' => $controller,
         'method' => $method,
-        'function' => $function,
+//        'function' => $function,
         'Middleware' => null,
     ];
     return $this;
 }
+
 //get all routes
 
-public function get($url, $controller, $function)
+    public function get($url, $controller)
 {
-  return  $this->add('GET', $url, $controller, $function);
+
+    return $this->add('GET', $url, $controller);
 }
-public function Post($url, $controller,$function)
+
+    public function Post($url, $controller)
 {
-   return $this->add('POST', $url, $controller,$function);
+    return $this->add('POST', $url, $controller);
 }
-public function put($url, $controller,$function)
+
+    public function put($url, $controller)
 {
-   return $this->add('PUT', $url, $controller,$function );
+    return $this->add('PUT', $url, $controller);
 }
 public function patch($url, $controller,$function)
 {
-  return  $this->add('PATCH', $url, $controller,$function);
+    return $this->add('PATCH', $url, $controller);
 }
-public function delete($url, $controller,$function)
+
+    public function delete($url, $controller)
 {
-  return  $this->add('DELETE', $url, $controller,$function);
+    return $this->add('DELETE', $url, $controller);
 }
 public function auth($key)
 {
-    //add middleware
     $this->routes[array_key_last($this->routes)]['Middleware'] = $key;
-//    print_r($this->routes);
 }
 
 
@@ -58,7 +63,8 @@ public function auth($key)
             /** @var resource $route */
             if ($route['method'] === $method  && $route['uri'] === $url) {
               require base_path('/Core/Middlewares/Middleware.php');
-              call_user_func_array($route['controller'],[""]);
+                return call_user_func($route['controller'], "");
+
 
 //                include base_path('/Http/Controller/' . $route['controller']) ?? $this->Abord();
 //                $route['function']();`
@@ -66,8 +72,9 @@ public function auth($key)
             }
 
         }
-//        $this->Abord();
+        $this->Abord();
     }
+
 
     protected function Abord($code = 404)
     {
@@ -76,19 +83,31 @@ public function auth($key)
         die();
     }
 
-    public function redirect($view = null,)
+    public function redirect($view = null)
     {
         $layout = ($this->Layout());
         $views = ($this->render($view));
-        echo str_replace('{{containt}}', $views, $layout);
+        echo str_replace('{{__contain}}', $views, $layout);
     }
+
 
     public function Layout()
     {
         ob_start();
-        include __DIR__ . '/../View/index.php';
+         if($_SESSION['__route']["Auths"]==="Admin")
+         {
+             include __DIR__ . '/../View/BackEnd/index.php';
+
+         }
+         if($_SESSION['__route']["Auths"]==="Auth" || $_SESSION['__route']["Auths"]==="Guest")
+         {
+             include __DIR__ . '/../View/index.php';
+         }
+
         return ob_get_clean();
+
     }
+
 
 ////
     public function render($view = null)
@@ -97,9 +116,6 @@ public function auth($key)
         include __DIR__ . '/../View/' . $view;
         return ob_get_clean();
 
-    }
-    public static function test($data ,$controller, ){
-       return call_user_func_array($data, [$controller]);
     }
 
 }

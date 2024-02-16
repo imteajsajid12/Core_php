@@ -7,8 +7,8 @@ use \Http\Controller;
 
 
 //Admin//
-$router->get('/Admin/login', '/BackEnd/LoginControllers.php', 'index');
-$router->post('/Admin/login', '/BackEnd/LoginControllers.php', 'create');
+//$router->get('/Admin/login', '/BackEnd/LoginControllers.php', 'index');
+//$router->post('/Admin/login', '/BackEnd/LoginControllers.php', 'create');
 $router->get('/Admin/logout', '/BackEnd/LoginControllers.php', 'logout')->auth("Admin");
 //home
 $router->get('/Admin/home', '/BackEnd/HomeController.php','index')->auth("Admin");
@@ -24,11 +24,11 @@ $router->post('/Admin/homepage/delete', '/BackEnd/HomePage  Controller.php', 'de
 
 
 //role
-$router->get('/Admin/role', '/BackEnd/RoleController.php', 'index')->auth('Admin');
-$router->post('/Admin/role/create', '/BackEnd/RoleController.php', 'create')->auth('Admin');
-$router->get('/Admin/role/edit', '/BackEnd/RoleController.php', 'edit')->auth('Admin');
-$router->post('/Admin/role/update', '/BackEnd/RoleController.php', 'update')->auth('Admin');
-$router->post('/Admin/role/delete', '/BackEnd/RoleController.php', 'delete')->auth('Admin');
+$router->get('/Admin/role', [new Controller\BackEnd\RoleController(),'index'])->auth('Admin');
+$router->post('/Admin/role/create',[new Controller\BackEnd\RoleController(),'create'])->auth('Admin');
+$router->get('/Admin/role/edit', [new Controller\BackEnd\RoleController(),'edit'])->auth('Admin');
+//$router->post('/Admin/role/update', '/BackEnd/RoleController.php', 'update')->auth('Admin');
+//$router->post('/Admin/role/delete', '/BackEnd/RoleController.php', 'delete')->auth('Admin');
 
 
 
@@ -38,9 +38,9 @@ $router->post('/Admin/role/delete', '/BackEnd/RoleController.php', 'delete')->au
 
 //frontend
 
-$router->get('/',[ new Controller\DController(),'index'],'index');
-$router->get('/shop', '/ShopController.php','index');
-$router->get('/contact', '/ContactController.php','index');
-$router->get('/blog', '/BlogController.php','index');
+$router->get('/',[ new Controller\HomeController(),'index']);
+//$router->get('/shop', '/ShopController.php','index');
+//$router->get('/contact', '/ContactController.php','index');
+//$router->get('/blog', '/BlogController.php','index');
 //$router->get('/', '/Controller.php','index');
 //$router->get('/', '/Controller.php','index');

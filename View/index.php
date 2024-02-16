@@ -7,7 +7,7 @@ include base_path('/View/Frontend/procted/Heads.php');
 include base_path('/View/Frontend/procted/header.php');
 ?>
 
-  {{containt}}
+{{__contain}}
 
 <?php
 include base_path('/View/Frontend/procted/footer.php');
