@@ -1,11 +1,13 @@
 <?php
-include base_path(  '/Http/Forms/LohinForm.php');// /Http/Forms/LoginForm.php
-include base_path(  '/Core/Authenticator.php');//add authenticator
+
+
 //namespace Controller\LoginController;
 
 function index()
 {
-    view('BackEnd/login.php');
+    view('BackEnd/login.php',[
+        'Errors' => \Core\Session::get('Errors'),
+    ]);
 }
 
 
@@ -19,8 +21,14 @@ function create()
         header('/Admin/home');
         exit();
     }
+//   \Core\Session::flash('Errors',$validation->getErrors()) ;
+//  return header('location: /Admin/home');
+//    \Core\Session::unflash();
     view('BackEnd/login.php',['Errors' => $validation->getErrors()]);
 
 }
-
+function logout()
+{
+    (new \Core\Authenticator())->logout();
+}
 

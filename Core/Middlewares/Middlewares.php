@@ -7,14 +7,14 @@ class Middlewares
   public  const  Maping=
         [
             'Auth'=>Auth::class,
-            'Admin'=>Auth::class,
+            'Admin'=>Admin::class,
 //            'Guest'=>Guest::class,
         ];
     public static function  resolve ($key)
     {
         if (isset($key)) {
             $middleware = static::Maping[$key];
-            (new Auth())->handle();
+            (new $middleware())->handle();
         }
         return;
     }

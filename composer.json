@@ -1,0 +1,19 @@
+{
+    "name": "root/www",
+    "description": "imteajsajid test php app",
+    "authors": [
+        {
+            "name": "Imteajsajid",
+            "email": "Imteajsajid@gmail.com"
+        }
+    ],
+    "require": {
+        "illuminate/collections": "^8.83"
+    },
+    "autoload": {
+        "psr-4": {
+            "Core\\": "Core/",
+            "Http\\": "Http/"
+        }
+    }
+}

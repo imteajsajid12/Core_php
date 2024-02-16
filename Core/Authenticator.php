@@ -31,9 +31,15 @@ class Authenticator
    public function login($user)
     {
         $_SESSION[ 'User'] =['user'=>$user];
-        $_SESSION[ 'Auth'] = 'Auth';
+        $_SESSION[ 'Auth'] = 'Admin';
 
         session_create_id(true);
     }
-    
+
+    public function logout(){
+
+        session_destroy();
+        header('location: /');
+//        session_destroy_id(true);
+    }
 }

@@ -4,7 +4,7 @@ namespace Core;
 
 
 
-use Core\Middlewares\Auth;
+use Http\Controller\DController;
 
 class Routes
 {
@@ -58,15 +58,15 @@ public function auth($key)
             /** @var resource $route */
             if ($route['method'] === $method  && $route['uri'] === $url) {
               require base_path('/Core/Middlewares/Middleware.php');
-                //call function name
-//                path
-                include base_path('/Http/Controller/' . $route['controller']);
-                $route['function']();
-                return;
+              call_user_func_array($route['controller'],[""]);
+
+//                include base_path('/Http/Controller/' . $route['controller']) ?? $this->Abord();
+//                $route['function']();`
+//                return;
             }
 
         }
-        $this->Abord();
+//        $this->Abord();
     }
 
     protected function Abord($code = 404)
@@ -75,6 +75,33 @@ public function auth($key)
         echo "404";
         die();
     }
+
+    public function redirect($view = null,)
+    {
+        $layout = ($this->Layout());
+        $views = ($this->render($view));
+        echo str_replace('{{containt}}', $views, $layout);
+    }
+
+    public function Layout()
+    {
+        ob_start();
+        include __DIR__ . '/../View/index.php';
+        return ob_get_clean();
+    }
+
+////
+    public function render($view = null)
+    {
+        ob_start();
+        include __DIR__ . '/../View/' . $view;
+        return ob_get_clean();
+
+    }
+    public static function test($data ,$controller, ){
+       return call_user_func_array($data, [$controller]);
+    }
+
 }
 
 $router= new Routes();
@@ -82,5 +109,11 @@ require base_path('Route/web.php');
 $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 $method = $_POST['method'] ?? $_SERVER['REQUEST_METHOD'];
 //echo $method;
+
 $router->router($uri, $method, );
+
+// Define parameters
+
+
+//    call_user_func('test');
 

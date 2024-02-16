@@ -1,5 +1,8 @@
 <?php
 include base_path('/View/BackEnd/procted/header.php');
+if (isset($_SESSION['__flash']))
+//print_r($Errors['errors']);
+
 ?>
 
 
@@ -27,10 +30,27 @@ include base_path('/View/BackEnd/procted/slider.php');
 
             <!-- Page Heading -->
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                <h1 class="h3 mb-0 text-gray-800">Dashboard1</h1>
                 <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                             class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
             </div>
+            <?php if (isset($Success)) : ?>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong><?= $Success ?></strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <?php endif; ?>
+            <?php if(isset($Delete)) : ?>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong><?= $Success ?></strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <?php endif; ?>
+
 
 
             <!--            creare Form-->
@@ -46,6 +66,9 @@ include base_path('/View/BackEnd/procted/slider.php');
                         <input type="text" class="form-control" name="slug" placeholder="Last name">
                         <?php if (isset($Errors['errors'])) : ?>
                             <p style="color: red"><?= $Errors['errors'] ?> </p>
+                            <!--                        --><?php
+//                            unset($_SESSION['__flash']);
+//                            ?>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -57,9 +80,8 @@ include base_path('/View/BackEnd/procted/slider.php');
                 </div>
             </form>
 
-
-            <!--            table-->
-            <!-- DataTales Example -->
+<!--                        table-->
+<!--             DataTales Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
@@ -95,10 +117,15 @@ include base_path('/View/BackEnd/procted/slider.php');
                                     <td><?= $note['name'] ?></td>
                                     <td><?= $note['slug'] ?></td>
                                     <td><?= $note['timestamp'] ?></td>
-                                    <td><a href="/note/view/<?= $note['id'] ?>" class="btn btn-info">view</a>
-                                        <a class="btn btn-primary">Edit</a>
-                                        <a class="btn btn-danger">Delete</a></td>
-
+                                    <td>
+                                        <form method="post" action="/Admin/role/delete">
+                                            <a href="/Admin/role/view?id=<?= $note['id'] ?>"
+                                               class="btn btn-info">view</a>
+                                            <a href="/Admin/role/edit?id=<?= $note['id'] ?>" class="btn btn-primary">Edit</a>
+                                            <button class="btn btn-danger" type="submit">Delete</button>
+                                            <input type="hidden" name="id" value="<?= $note['id'] ?>">
+                                        </form>
+                                    </td>
                                 </tr>
                             <?php endforeach; ?>
 
@@ -117,4 +144,4 @@ include base_path('/View/BackEnd/procted/slider.php');
 
 <?php
 include base_path('/View/BackEnd/procted/footer.php');
-?><?php
+?>

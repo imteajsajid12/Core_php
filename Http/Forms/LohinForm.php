@@ -21,7 +21,6 @@ public function validate($email , $password): array
     if (!\Core\Validator::string($password, 6, 255)) {
         $this->Errors['errors'] = 'Password is required';
     }
-//    print_r($Errors);
     return $this->Errors;
 
 }
