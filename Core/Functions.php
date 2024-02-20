@@ -7,9 +7,11 @@
 use Core\Routes;
 
 function view($path = null, $attributes = []){
+
     $router = new Routes();
-    $router->redirect($path);
     extract($attributes);
+    $router->redirect($path , $attributes);
+
 //    require base_path('view/'.$path);
 }
 function base_path($path = null){

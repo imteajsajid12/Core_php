@@ -62,6 +62,7 @@ public function auth($key)
         foreach ($this->routes as $route) {
             /** @var resource $route */
             if ($route['method'] === $method  && $route['uri'] === $url) {
+                $path = explode("/", $url)[1];
               require base_path('/Core/Middlewares/Middleware.php');
                 return call_user_func($route['controller'], "");
 
@@ -83,16 +84,17 @@ public function auth($key)
         die();
     }
 
-    public function redirect($view = null)
+    public function redirect($view = null, $attributes = [])
     {
         $layout = ($this->Layout());
-        $views = ($this->render($view));
+        $views = ($this->render($view, $attributes));
         echo str_replace('{{__contain}}', $views, $layout);
     }
 
 
     public function Layout()
     {
+
         ob_start();
          if($_SESSION['__route']["Auths"]==="Admin")
          {
@@ -103,20 +105,22 @@ public function auth($key)
          {
              include __DIR__ . '/../View/index.php';
          }
-
         return ob_get_clean();
-
     }
 
 
 ////
-    public function render($view = null)
+    public function render($view = null, $attributes = [])
     {
         ob_start();
+        extract($attributes);
         include __DIR__ . '/../View/' . $view;
         return ob_get_clean();
 
     }
+
+
+
 
 }
 

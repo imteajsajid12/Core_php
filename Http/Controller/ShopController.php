@@ -1,7 +1,15 @@
 <?php
 
+namespace Http\Controller;
 
-function index()
+class ShopController
 {
-    view('Frontend/Shop.view.php',[]);
+public function index(){
+
+        view('Frontend/Shop.view.php',[
+
+        ]);
+
+    }
+
 }

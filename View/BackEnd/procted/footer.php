@@ -39,8 +39,19 @@
     </div>
 </div>
 
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.js"></script>
+
+
 <!-- Bootstrap core JavaScript-->
-<script src="/View/BackEnd/App/vendor/jquery/jquery.min.js"></script>
+<!--<script src="/View/BackEnd/App/vendor/jquery/jquery.min.js"></script>-->
 <script src="/View/BackEnd/App/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- Core plugin JavaScript-->
@@ -59,9 +70,33 @@
 <!-- Page level custom scripts -->
 <script src="/View/BackEnd/App/js/demo/datatables-demo.js"></script>
 
-<!-- Page level plugins -->
-<script src="/View/BackEnd/App/vendor/datatables/jquery.dataTables.min.js"></script>
-<script src="/View/BackEnd/App/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+
+
+
+<script>
+    $('textarea#summernote').summernote({
+        placeholder: 'Hello bootstrap 4',
+        tabsize: 2,
+        height: 100,
+        toolbar: [
+            ['style', ['style']],
+            ['font', ['bold', 'italic', 'underline', 'clear']],
+            ['font', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
+            ['fontname', ['fontname']],
+            ['fontsize', ['fontsize']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['height', ['height']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'hr']],
+['view', ['fullscreen', 'codeview']],
+            ['help', ['help']]
+        ],
+    });
+</script>
+
+
 
 </body>
 

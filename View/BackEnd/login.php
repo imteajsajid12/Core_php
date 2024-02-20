@@ -1,11 +1,7 @@
-<?php
-include base_path() . 'View/BackEnd/procted/header.php';
-//echo($_SESSION['']);
-?>
-<body class="bg-gradient-primary">
+
+
 
 <div class="container">
-
     <!-- Outer Row -->
     <div class="row justify-content-center">
 
@@ -71,4 +67,4 @@ include base_path() . 'View/BackEnd/procted/header.php';
 
     </div>
 
-</div>
+

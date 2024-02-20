@@ -1,6 +1,12 @@
 <?php
 
-function index()
+namespace Http\Controller\BackEnd;
+
+class HomeController
 {
-    view('BackEnd/home.view.php');
+
+  public  function index()
+    {
+    view('BackEnd/Home/home.view.php');
+    }
 }

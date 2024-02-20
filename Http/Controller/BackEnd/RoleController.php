@@ -1,13 +1,14 @@
 <?php
 
 namespace Http\Controller\BackEnd;
+include BASE_PATH . 'Models/Roles.php';
 
+use Core\MyValidator;
 use Core\Validation;
+use Models\Roles;
+
 class RoleController
 {
-
-
-
     /** @var mixed $data */
 
     /**
@@ -17,13 +18,12 @@ class RoleController
     {
         $data = new \Core\Database();
         $roles = $data->query('select * from roles')->all();
-        view('Backend/Role/Role.view.php');
-//        var_dump($roles);
-//        view('/BackEnd/Role/Role.view.php', [
-//            'notes' => $roles,
-//            'Errors' => \Core\Session::get('Errors'),
-//            'Success' => \Core\Session::get('Success'),
-//        ]);
+       view('/BackEnd/Role/Role.view.php', [
+           'notes' => $roles,
+           'Errors' => \Core\Session::get('Errors'),
+           'Delete' => \Core\Session::get('Delete'),
+           'Success' => \Core\Session::get('Success'),
+       ]);
     }
 
 //pdo_database
@@ -32,8 +32,6 @@ class RoleController
     {
         $errors = [];
         $data = new \Core\Database();
-
-
         if (!Validation::string
         ($_POST['name'], 1, 255)) {
             $errors['errors'] = 'Name is required';
@@ -48,9 +46,8 @@ class RoleController
             ]);
             \Core\Session::flash('Success', 'Role created successfully');
         }
-        var_dump($errors);
-//    \Core\Session::flash('Errors', $errors);
-//    header('location: /Admin/role');
+        \Core\Session::flash('Errors', $errors);
+        header('location: /Admin/role');
 
 
     }
@@ -68,7 +65,7 @@ class RoleController
         $roles = $data->query('select * from roles')->all();
         $show = $data->query('select * from roles where id = :id', [
             'id' => $_GET['id'],
-        ])->find();
+        ])->get();
         view('/BackEnd/Role/Update.view.php', [
             'notes' => $roles,
             'data' => $show,
@@ -82,7 +79,7 @@ class RoleController
         if (!Validation::string($_POST['name'], 1, 255)) {
             $errors['errors'] = 'Name is required';
         }
-        if (!Validation::string($_POST['slug'], 5, 255)) {
+        if (!Validation::string($_POST['slug'], 2, 255)) {
             $errors['errors'] = 'slug is required';
         }
         if (empty($errors)) {
@@ -106,7 +103,7 @@ class RoleController
         $data->query('delete from roles where id = :id', [
             'id' => $_POST['id'],
         ]);
-        \Core\Session::flash('Dlete', 'Role Delete successfully');
+        \Core\Session::flash('Delete', 'Role Delete successfully');
         header('location:/Admin/role');
     }
 

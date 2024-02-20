@@ -7,7 +7,9 @@ class  Database
 {
     public $connection;
     public $statment;
-
+//    delete
+   public  $Delete;
+   public  $table;
     public function __construct($username = 'user', $password = 'pass')
     {
         $config = [
@@ -38,9 +40,32 @@ class  Database
         return $this;
     }
 
-    public function find()
+    public function insert($table, $params= []){
+   $this->query("insert into $table (".implode(',',array_keys($params)).") values(:".implode(',:',array_keys($params)).")" , $params);
+     return true;
+    }
+
+    public function update($table, $params =[] )
     {
-        return $this->statment->fetch();
+        $this->query("update $table where ".implode('=:,',array_keys($params))."=:" , array_values($params));
+        return true;
+    }
+
+    public function delete( $table, $id = [])
+    {
+        $this->query("delete from $table where id = :id" , $id);
+//        var_dump( implode('=? AND ',array_keys($params)));
+//        die();
+//       $data= $this->query("delete from $table where ".implode('=? AND ',array_keys($params))."=?" , array_values($params));
+//        var_dump($data);
+    }
+
+    public function find($table,$id)
+    {
+        $ids= (int)$id;
+       $data= $this->query("select * from $table where id = :id",
+            ['id'=> $ids])->get();
+        return $data;
     }
 
     public function FindOrFail()

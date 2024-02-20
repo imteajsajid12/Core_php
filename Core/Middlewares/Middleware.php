@@ -10,23 +10,22 @@ require base_path('Core/Middlewares/Middlewares.php');
 
 
 
-if ($route['Middleware'] === "Admin") {
-    $_SESSION['__route']["Auths"] = "Admin";
+/** @var string $path */
 
+if (($route['Middleware'] === "Admin") || ($path === "Admin")) {
+    $_SESSION['__route']["Auths"] = "Admin";
 }
 if ($route['Middleware'] === "Auth") {
-
     $_SESSION['__route']["Auths"] = "Auth";
 }
 if (empty($route['Middleware'])) {
     $_SESSION['__route']["Auths"] = "Guest";
 }
+if($path === "Admin")
+{
+    $_SESSION['__route']["Auths"] = "Admin";
+}
 
-//if($route['Middleware'])
-//{
-//    $middleware = \Core\Middlewares\Middlewares::Maping[$route['Middleware']];
-//    (new $middleware())->handle();
-//}
 
 
 

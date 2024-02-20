@@ -15,7 +15,7 @@ class Authenticator
         $data = new Database();
         $value = $data->query('Select * from users WHERE email =:email ', [
             'email' => $email,
-        ])->find();
+        ])->get();
         if ($value) {
             if (password_verify($password, $value['password'])) {
                 $Success ['message'] = "Role created successfully";

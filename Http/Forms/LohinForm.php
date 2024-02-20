@@ -15,10 +15,10 @@ public  function __construct(){
 public function validate($email , $password): array
 {
     //validation
-    if (!\Core\Validator::string($email, 5, 255)) {
+    if (!\Core\Validation::string($email, 5, 255)) {
         $this->Errors['errors'] = 'Email is required';
     }
-    if (!\Core\Validator::string($password, 6, 255)) {
+    if (!\Core\Validation::string($password, 6, 255)) {
         $this->Errors['errors'] = 'Password is required';
     }
     return $this->Errors;

@@ -1,22 +1,8 @@
-<?php
-include base_path('/View/BackEnd/procted/header.php');
-if (isset($_SESSION['__flash']))
-//print_r($Errors['errors']);
 
-?>
-
-
-    <body id="page-top">
-
-    <!-- Page Wrapper -->
-    <div id="wrapper"
 
 <?php
 include base_path('/View/BackEnd/procted/slider.php');
-
 ?>
-
-
     <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">
 
@@ -43,8 +29,8 @@ include base_path('/View/BackEnd/procted/slider.php');
                 </div>
             <?php endif; ?>
             <?php if(isset($Delete)) : ?>
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong><?= $Success ?></strong>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong><?= $Delete ?></strong>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -142,6 +128,3 @@ include base_path('/View/BackEnd/procted/slider.php');
     <!-- End of Main Content -->
 
 
-<?php
-include base_path('/View/BackEnd/procted/footer.php');
-?>

@@ -1,5 +1,6 @@
 <?php
 
+
 use \Http\Controller;
 use Http\Controller\DController;
 
@@ -15,15 +16,15 @@ require(BASE_PATH . '/Core/Session.php');// include the session
 require( BASE_PATH.'/Core/Validation.php') ;// include the validation
 require (BASE_PATH.'/Core/Database.php') ;// include the database
 include (BASE_PATH . "Core/Functions.php");// include the functions
-
-require(BASE_PATH .'/Core/Routes.php') ;// include the routes
 require( BASE_PATH.'/Core/Config.php') ;// include the config
+require(BASE_PATH .'/Core/Routes.php') ;// include the routes
 
 
-//\Core\Routes::test( '/','jnafaf','admin');
-//\Core\Routes::test( '/','jnafaf','admin');
-//\Core\Routes::test( '/','jnafaf','admin');
 unset($_SESSION['__route']["Auths"]);
+
+
+
+
 
 
 
