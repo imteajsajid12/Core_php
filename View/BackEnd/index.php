@@ -1,8 +1,6 @@
 <?php
 include base_path('/View/BackEnd/procted/header.php');
 
-
-
 ?>
 
 

@@ -75,10 +75,6 @@ class Validation
         } catch (\Exception $e) {
             echo 'Caught exception: ', $e->getMessage(), "\n";
         }
-
-
-        /** @var mixed $errors */
-//        return $errors;
        return [
            'errors' => $errors,
            'data' => $all_data

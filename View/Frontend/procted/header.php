@@ -1,4 +1,5 @@
 <?php
+
 ?>
 
 
@@ -100,7 +101,7 @@
             </div>
             <!-- Cart Area -->
             <div class="cart-area">
-                <a href="#" id="essenceCartBtn"><img src="/View/Frontend/App/img/core-img/bag.svg" alt=""> <span>3</span></a>
+                <a href="#" id="essenceCartBtn"><img src="/View/Frontend/App/img/core-img/bag.svg" alt=""> <span><?= $total_quantity ?></span></a>
             </div>
         </div>
 

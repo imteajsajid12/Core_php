@@ -19,10 +19,17 @@ $router->post('/Admin/home', [new  Controller\BackEnd\HomeController(),'delete']
 //shop//
 $router->get('/Admin/shop', [new  Controller\BackEnd\ShopController(),'index'])->auth("Admin");
 $router->post('/Admin/shop/create', [new  Controller\BackEnd\ShopController(),'create'])->auth("Admin");
-$router->get('/Admin/shop', [new  Controller\BackEnd\ShopController(),'edit'])->auth("Admin");
+$router->get('/Admin/shop/edit', [new  Controller\BackEnd\ShopController(),'edit'])->auth("Admin");
 $router->get('/Admin/shop', [new  Controller\BackEnd\ShopController(),'update'])->auth("Admin");
 $router->post('/Admin/shop/delete', [new  Controller\BackEnd\ShopController(),'delete'])->auth("Admin");
 $router->get('/Admin/test', [new  Controller\BackEnd\ShopController(),'test'])->auth("Admin");
+
+//color//
+$router->get('/Admin/color', [new  Controller\BackEnd\ShopController(),'index'])->auth("Admin");
+//size//
+$router->get('/Admin/size', [new  Controller\BackEnd\ShopController(),'index'])->auth("Admin");
+//Category//
+$router->get('/Admin/category', [new  Controller\BackEnd\ShopController(),'index'])->auth("Admin");
 
 
 //home controller
@@ -55,7 +62,14 @@ $router->post('/Admin/role/delete', [new Controller\BackEnd\RoleController(),'de
 //frontend
 
 $router->get('/',[ new Controller\HomeController(),'index']);
+$router->get('/login',[ new Controller\LoginController(),'index']);
+$router->post('/login',[ new Controller\LoginController(),'create']);
 $router->get('/shop',[ new Controller\ShopController,'index']);
+//cart//
+$router->post('/shop/cart',[ new Controller\CartController,'create'])->auth('Auth');
+$router->post('/cart/delete',[ new Controller\CartController,'delete'])->auth('Auth');
+
+$router->get('/product_details',[ new Controller\ShopController,'index']);
 //$router->get('/contact', '/ContactController.php','index');
 //$router->get('/blog', '/BlogController.php','index');
 //$router->get('/', '/Controller.php','index');

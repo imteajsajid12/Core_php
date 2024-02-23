@@ -19,7 +19,24 @@ class Authenticator
         if ($value) {
             if (password_verify($password, $value['password'])) {
                 $Success ['message'] = "Role created successfully";
-                $this->login($value['email']);
+                $this->login($value);
+               header('location: /');
+                die();
+            }
+            return false;
+        }
+
+    }
+    public function Admin_attempt($email, $password)
+    {
+        $data = new Database();
+        $value = $data->query('Select * from users WHERE email =:email ', [
+            'email' => $email,
+        ])->get();
+        if ($value) {
+            if (password_verify($password, $value['password'])) {
+                $Success ['message'] = "Role created successfully";
+                $this->login($value);
                header('location: /Admin/home');
                 die();
             }
@@ -30,9 +47,14 @@ class Authenticator
 
    public function login($user)
     {
-        $_SESSION[ 'User'] =['user'=>$user];
-        $_SESSION[ 'Auth'] = 'Admin';
-
+        $_SESSION[ 'auth'] = $user;
+        $_SESSION[ 'Auth'] =  "Auth"; ;
+        session_create_id(true);
+    }
+    public function Admin_login($user)
+    {
+        $_SESSION[ 'auth'] = $user;
+        $_SESSION[ 'Auth'] = "Admin";
         session_create_id(true);
     }
 

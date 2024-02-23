@@ -56,13 +56,6 @@ include base_path('/View/BackEnd/procted/slider.php');
                     </div>
                 </div>
                 <div class="form-row">
-                    <!--                    <div class="form-group col-md-6">-->
-                    <!--                        <label for="inputPassword4">File</label>-->
-                    <!--                        <div class="custom-file">-->
-                    <!--                            <input type="file" name="title_image" class="custom-file-input" id="customFile">-->
-                    <!--                            <label class="custom-file-label" for="customFile">Choose file</label>-->
-                    <!--                        </div>-->
-                    <!--                    </div>-->
                     <div class="form-group col-md-6">
                         <label for="inputPassword4">Files</label>
                         <div class="custom-file">
@@ -204,8 +197,6 @@ include base_path('/View/BackEnd/procted/slider.php');
 
                                     <td>
                                         <form method="post" action="/Admin/shop/delete">
-                                            <a href="/Admin/shop/view?id=<?= $note['id'] ?>"
-                                               class="btn btn-info">view</a>
                                             <a href="/Admin/shop/edit?id=<?= $note['id'] ?>"
                                                class="btn btn-primary">Edit</a>
                                             <button class="btn btn-danger" type="submit">Delete</button>

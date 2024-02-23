@@ -32,7 +32,10 @@ $title=''
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.css" rel="stylesheet">
 
 
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.0.0/css/dataTables.dataTables.min.css"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.0/css/dataTables.dataTables.css" />
 
+    <script src="https://cdn.datatables.net/2.0.0/js/dataTables.js"></script>
 
 </head>
 

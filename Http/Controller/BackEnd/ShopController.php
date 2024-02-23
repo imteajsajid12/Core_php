@@ -11,6 +11,7 @@ class ShopController
 
     public function index()
     {
+
         $data = new Database();
         $data = $data->query('SELECT * FROM shops')->all();
         view('BackEnd/Shop/index.php',
@@ -24,9 +25,8 @@ class ShopController
 
     public function create()
     {
-        //validate the form
-        $errors = [];
         $image = [];
+        $errors = [];
         $validations = Validation::validation([
             'name' => 'required',
             'color' => 'required',
@@ -36,7 +36,6 @@ class ShopController
             'details'=>'required',
             'discount'=>'nullable',
         ]);
-
         if ($validations['errors']) {
             \Core\Session::flash('Errors', $validations['errors']);
             return header('location: /Admin/shop');
@@ -57,6 +56,7 @@ class ShopController
             $data= new Database();
             $validations['data']['image'] =serialize($image);
             $data->insert('shops', $validations['data']);
+            \Core\Session::flash('Success', 'Homepage created successfully');
             header("Location:/Admin/shop");
         }catch (\Exception $exception){
             var_dump($exception);
@@ -66,38 +66,78 @@ class ShopController
 
     public function edit()
     {
+        $data = new Database();
+        $show =$data->find('shops', $_GET['id']);
+        $datas = $data->query('SELECT * FROM shops')->all();
 
+        view('BackEnd/Shop/update.php',
+            [
+                'datas' => $datas,
+                'show'=> $show,
+                'Errors' => \Core\Session::get('Errors'),
+                'Delete' => \Core\Session::get('Delete'),
+                'Success' => \Core\Session::get('Success'),
+            ]);
     }
 
     public function update()
     {
-
+        $image = [];
+        $errors = [];
+        $validations = Validation::validation([
+            'name' => 'required',
+            'color' => 'required',
+            'price'=>'required',
+            'new_price' => 'required',
+            'size' => 'required',
+            'details'=>'required',
+            'discount'=>'nullable',
+        ]);
+        if ($validations['errors']) {
+            \Core\Session::flash('Errors', $validations['errors']);
+            return header('location: /Admin/shop');
+        }
+//        file update
+        if (count($_FILES['images']['name']) !== 0) {
+            $total = count($_FILES['images']['name']);
+            $images = unserialize($_POST['old_images']);
+            foreach ($images as $key => $value) {
+                (new Config())->unlinkFile('shop/', $images[$key]);
+            }
+            for ($i = 0; $i < $total; $i++) {
+                $images = Config::Files($_FILES['images'], 'shop/');
+                $image[] = $images;
+            }
+        }
+        try {
+            $data= new Database();
+            $validations['data']['id'] = $_POST['id'];
+            $validations['data']['image'] =serialize($image);
+            $data->update('shops', $validations['data']);
+            header("Location:/Admin/shop");
+        }catch (\Exception $exception){
+            var_dump($exception);
+            \Core\Session::flash('Errors', $exception);
+        }
     }
 
     protected function validation()
     {
+        //validate the form
         $errors = [];
-
-
-//        if (!Validation::string($inputs, 1, 255)) {
-//            $errors['errors'] = 'title is required';
-//        }
-//        if (!Validation::string($inputs, 1, 255)) {
-//            $errors['errors'] = 'banner_title is required';
-//        }
-//        if (!Validation::file($inputs, 1, 255)) {
-//            $errors['errors'] = 'banner_image is required';
-//        }
-//        if (!Validation::file($inputs, 1, 255)) {
-//            $errors['errors'] = 'title_image is required';
-//        }
-
-//        if (!empty($errors)) {
-//            \Core\Session::flash('Errors', $errors);
-//            header('location: /Admin/homepage');
-//        }
-//        $errors;
-
+        $validations = Validation::validation([
+            'name' => 'required',
+            'color' => 'required',
+            'price'=>'required',
+            'new_price' => 'required',
+            'size' => 'required',
+            'details'=>'required',
+            'discount'=>'nullable',
+        ]);
+        if ($validations['errors']) {
+            \Core\Session::flash('Errors', $validations['errors']);
+            return header('location: /Admin/shop');
+        }
     }
 
     public function delete()
