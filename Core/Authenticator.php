@@ -36,7 +36,7 @@ class Authenticator
         if ($value) {
             if (password_verify($password, $value['password'])) {
                 $Success ['message'] = "Role created successfully";
-                $this->login($value);
+                $this->Admin_login($value);
                header('location: /Admin/home');
                 die();
             }

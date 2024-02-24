@@ -10,9 +10,16 @@ class CartController
     {
         $db= new Database();
         $auth = (int)$_SESSION['auth']['id'];
-       $data= $db->query("SELECT carts.* ,shops.* FROM carts INNER JOIN shops ON carts.product_id = shops.id where carts.user_id = $auth")->all();
+       $data= $db->query("SELECT carts.id,shops.name,carts.quantity,shops.price,shops.image,carts.product_id,shops.color,shops.size 
+                             FROM carts INNER    JOIN shops ON carts.product_id = shops.id where carts.user_id = $auth")->all();
         return $data;
 
+ }
+ public function count_cart(){
+     $db= new Database();
+     $auth = (int)$_SESSION['auth']['id'];
+    $data=$db->query("SELECT * FROM carts where user_id = $auth")->all();
+return array_sum(array_column($data, "quantity"));
  }
 
  public function create(){
@@ -23,11 +30,11 @@ class CartController
          $carts = $db->query('select * from carts where product_id = :id', [
              'id' => $_POST['id'],
          ])->get();
-//         var_dump($carts);
+
          $cart = empty($carts) ? $db->insert('carts', [
              'product_id' => $data['id'],
              'user_id' => $_SESSION['auth']['id'],
-             'quantity' => 1,
+             'quantity' => $_POST['quantity'],
          ]) : $db->query('update carts set quantity = quantity + 1 where product_id = :id', [
              'id' => $_POST['id'],
          ]);

@@ -1,5 +1,5 @@
 <?php
-
+$carts = (new \Http\Controller\CartController())->count_cart();
 ?>
 
 
@@ -101,7 +101,7 @@
             </div>
             <!-- Cart Area -->
             <div class="cart-area">
-                <a href="#" id="essenceCartBtn"><img src="/View/Frontend/App/img/core-img/bag.svg" alt=""> <span><?= $total_quantity ?></span></a>
+                <a href="#" id="essenceCartBtn"><img src="/View/Frontend/App/img/core-img/bag.svg" alt=""> <span><?= $carts ?></span></a>
             </div>
         </div>
 

@@ -18,7 +18,7 @@ class LoginController
         $validation= new \Http\Forms\LohinForm();
         $attempt= new \Core\Authenticator();
         $validation->validate($_POST["email"], $_POST["password"]);
-        if ($attempt->attempt($_POST["email"], $_POST["password"])) {
+        if ($attempt->Admin_attempt($_POST["email"], $_POST["password"])) {
             header('/Admin/home');
             exit();
         }

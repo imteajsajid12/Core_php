@@ -9,7 +9,7 @@ use \Http\Controller;
 //Admin//
 $router->get('/Admin/login', [new  Controller\BackEnd\LoginController(),'index']);
 $router->post('/Admin/login', [new  Controller\BackEnd\LoginController(),'create']);
-$router->get('/Admin/logout', [new  Controller\BackEnd\LoginController(),'logout'])->auth("Admin");
+$router->get('/Admin/logout', [new  Controller\BackEnd\LoginController(),'logout']);
 //home
 $router->get('/Admin/home', [new  Controller\BackEnd\HomeController(),'index'])->auth("Admin");
 $router->post('/Admin/home', [new  Controller\BackEnd\HomeController(),'create'])->auth("Admin");
@@ -25,11 +25,21 @@ $router->post('/Admin/shop/delete', [new  Controller\BackEnd\ShopController(),'d
 $router->get('/Admin/test', [new  Controller\BackEnd\ShopController(),'test'])->auth("Admin");
 
 //color//
-$router->get('/Admin/color', [new  Controller\BackEnd\ShopController(),'index'])->auth("Admin");
-//size//
-$router->get('/Admin/size', [new  Controller\BackEnd\ShopController(),'index'])->auth("Admin");
+//$router->get('/Admin/color', [new  Controller\BackEnd\ShopController(),'index'])->auth("Admin");
+////size//
+//$router->get('/Admin/size', [new  Controller\BackEnd\ShopController(),'index'])->auth("Admin");
+
+
 //Category//
-$router->get('/Admin/category', [new  Controller\BackEnd\ShopController(),'index'])->auth("Admin");
+$router->get('/Admin/category', [new  Controller\BackEnd\CategoriesController(),'index'])->auth("Admin");
+$router->post('/Admin/category/create', [new  Controller\BackEnd\CategoriesController(),'create'])->auth("Admin");
+$router->post('/Admin/category/delete', [new  Controller\BackEnd\CategoriesController(),'delete'])->auth("Admin");
+
+//brand
+$router->get('/Admin/brand', [new  Controller\BackEnd\BrandCrontroller(),'index'])->auth("Admin");
+$router->post('/Admin/brand/create', [new  Controller\BackEnd\BrandCrontroller(),'create'])->auth("Admin");
+$router->post('/Admin/brand/delete', [new  Controller\BackEnd\BrandCrontroller(),'delete'])->auth("Admin");
+
 
 
 //home controller
@@ -65,8 +75,11 @@ $router->get('/',[ new Controller\HomeController(),'index']);
 $router->get('/login',[ new Controller\LoginController(),'index']);
 $router->post('/login',[ new Controller\LoginController(),'create']);
 $router->get('/shop',[ new Controller\ShopController,'index']);
+//protected details
+$router->get('/product_details',[ new Controller\Product_detailsController(),'index']);
 //cart//
 $router->post('/shop/cart',[ new Controller\CartController,'create'])->auth('Auth');
+$router->get('/cart',[ new Controller\CartController,'index'])->auth('Auth');
 $router->post('/cart/delete',[ new Controller\CartController,'delete'])->auth('Auth');
 
 $router->get('/product_details',[ new Controller\ShopController,'index']);

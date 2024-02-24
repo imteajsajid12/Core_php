@@ -2,13 +2,14 @@
 $carts = (new \Http\Controller\CartController())->index();
 $total = 0;
 $total_quantity = array_sum(array_column($carts, "quantity"));
+//var_dump($carts);
 ?>
 
 <div class="right-side-cart-area">
 
     <!-- Cart Button -->
     <div class="cart-button">
-        <a href="#" id="rightSideCart"><img src="/View/Frontend/App/img/core-img/bag.svg" alt=""> <span>3</span></a>
+        <a href="#" id="rightSideCart"><img src="/View/Frontend/App/img/core-img/bag.svg" alt=""> <span><?= $total_quantity ?></span></a>
     </div>
 
     <div class="cart-content d-flex">

@@ -83,8 +83,13 @@ include base_path('/View/BackEnd/procted/slider.php');
                     <div class="form-group col-md-4">
                         <label for="inputZip">Category</label>
                         <select id="inputState" name="category" class="form-control">
+                            <?php /** @var array $categorys */
+                            foreach ($categorys as $category) : ?>
+                                <option value="<?= $category['id'] ?>"><?= $category['name'] ?></option>
+
                             <option selected>Choose...</option>
                             <option>man</option>
+                            <?php endforeach; ?>
                         </select>
                     </div>
 
@@ -211,7 +216,7 @@ include base_path('/View/BackEnd/procted/slider.php');
                 </div>
             </div>
 
-
+        </div>
         </div>
         <!-- /.container-fluid -->
     </div>

@@ -13,10 +13,10 @@ class ShopController
     {
 
         $data = new Database();
-        $data = $data->query('SELECT * FROM shops')->all();
+        $datas = $data->query('SELECT * FROM shops')->all();
         view('BackEnd/Shop/index.php',
-            [
-                'homepages' => $data,
+            [   'categorys'=> $data->query('SELECT * FROM category')->all(),
+                'homepages' => $datas,
                 'Errors' => \Core\Session::get('Errors'),
                 'Delete' => \Core\Session::get('Delete'),
                 'Success' => \Core\Session::get('Success'),

@@ -16,11 +16,12 @@ include base_path('/View/BackEnd/procted/header.php');
 
 {{__contain}}
 
-
+    </div>
         <?php
         include base_path('/View/BackEnd/procted/footer.php');
         ?>
-</div>
+
+
 
 
 

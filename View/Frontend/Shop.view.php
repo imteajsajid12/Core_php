@@ -57,16 +57,10 @@ include __DIR__.'/procted/cart.php';
                                     <a href="#">clothing</a>
                                     <ul class="sub-menu collapse show" id="clothing">
                                         <li><a href="#">All</a></li>
-                                        <li><a href="#">Bodysuits</a></li>
-                                        <li><a href="#">Dresses</a></li>
-                                        <li><a href="#">Hoodies &amp; Sweats</a></li>
-                                        <li><a href="#">Jackets &amp; Coats</a></li>
-                                        <li><a href="#">Jeans</a></li>
-                                        <li><a href="#">Pants &amp; Leggings</a></li>
-                                        <li><a href="#">Rompers &amp; Jumpsuits</a></li>
-                                        <li><a href="#">Shirts &amp; Blouses</a></li>
-                                        <li><a href="#">Shirts</a></li>
-                                        <li><a href="#">Sweaters &amp; Knits</a></li>
+                                        <?php foreach ($categorys as $category) : ?>
+                                        <li><a href="/Shop/<?= $category['name'] ?>"><?= $category['name'] ?></a></li>
+
+                                        <?endforeach  ?>
                                     </ul>
                                 </li>
                                 <!-- Single Item -->
@@ -215,7 +209,7 @@ include __DIR__.'/procted/cart.php';
                                 <!-- Product Description -->
                                 <div class="product-description">
                                     <span>topshop</span>
-                                        <a href="/product_details">
+                                        <a href="/product_details?id=<?= $product['id'] ?>">
                                         <?= $product['name'] ?>
                                     </a>
                                     <p class="product-price"><span
@@ -228,6 +222,7 @@ include __DIR__.'/procted/cart.php';
                                         <form method="post" action="/shop/cart">
                                             <input type="hidden" name="id" value="<?= $product['id'] ?>">
                                         <div class="add-to-cart-btn">
+                                            <input hidden="hidden" type="text" value="1" name="quantity">
                                             <button href="" class="btn essence-btn">Add to Cart</button>
                                         </div>
                                         </form>
