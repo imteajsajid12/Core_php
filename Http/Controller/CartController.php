@@ -8,8 +8,9 @@ class CartController
 {
     public function index()
     {
-        $db= new Database();
-        $auth = (int)$_SESSION['auth']['id'];
+        $db = new Database();
+        $auth=(isset($_SESSION['auth']))? (int)$_SESSION['auth']['id'] :0;
+
        $data= $db->query("SELECT carts.id,shops.name,carts.quantity,shops.price,shops.image,carts.product_id,shops.color,shops.size 
                              FROM carts INNER    JOIN shops ON carts.product_id = shops.id where carts.user_id = $auth")->all();
         return $data;
@@ -17,7 +18,7 @@ class CartController
  }
  public function count_cart(){
      $db= new Database();
-     $auth = (int)$_SESSION['auth']['id'];
+     $auth=(isset($_SESSION['auth']))? (int)$_SESSION['auth']['id'] :0;
     $data=$db->query("SELECT * FROM carts where user_id = $auth")->all();
 return array_sum(array_column($data, "quantity"));
  }
@@ -27,16 +28,21 @@ return array_sum(array_column($data, "quantity"));
 
          $db = new Database();
          $data = $db->find('shops', $_POST['id']);
-         $carts = $db->query('select * from carts where product_id = :id', [
+         $carts = $db->query('select * from carts where product_id = :id and color = :color and size = :size', [
              'id' => $_POST['id'],
+             'color' => $_POST['color'],
+             'size' => $_POST['size'],
          ])->get();
 
          $cart = empty($carts) ? $db->insert('carts', [
              'product_id' => $data['id'],
              'user_id' => $_SESSION['auth']['id'],
+             'color' => $_POST['color'],
+             'size' => $_POST['size'],
              'quantity' => $_POST['quantity'],
-         ]) : $db->query('update carts set quantity = quantity + 1 where product_id = :id', [
+         ]) : $db->query('update carts set quantity = :quantity where product_id = :id', [
              'id' => $_POST['id'],
+             'quantity' => $carts['quantity'] + $_POST['quantity'],
          ]);
          \Core\Session::flash('Success', 'Product Add successfully');
          header('location:/shop');

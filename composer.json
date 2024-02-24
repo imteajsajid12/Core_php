@@ -8,11 +8,13 @@
         }
     ],
     "require": {
-        "illuminate/collections": "^8.83"
+        "illuminate/collections": "^8.83",
+        "stripe/stripe-php": "^13.12"
     },
     "autoload": {
+        "classmap": ["Core"],
         "psr-4": {
-            "Core\\": "Core/",
+            "Core\\": "Core",
             "Http\\": "Http/"
         }
     }

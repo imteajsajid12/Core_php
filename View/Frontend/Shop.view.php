@@ -221,6 +221,9 @@ include __DIR__.'/procted/cart.php';
                                         <!-- Add to Cart -->
                                         <form method="post" action="/shop/cart">
                                             <input type="hidden" name="id" value="<?= $product['id'] ?>">
+                                            <input type="hidden" name="color" value="<?= $product['color'] ?>">
+                                            <input type="hidden" name="size" value="<?= $product['size'] ?>">
+
                                         <div class="add-to-cart-btn">
                                             <input hidden="hidden" type="text" value="1" name="quantity">
                                             <button href="" class="btn essence-btn">Add to Cart</button>

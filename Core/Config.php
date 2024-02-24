@@ -34,7 +34,7 @@ class Config
             //Make sure we have a file path
             if ($tmpFilePath != "") {
                 //Setup our new file path
-                $name=rand(10, 1000) . $attributes['name'][$i];
+                $name= Config . phprand(10, 1000) . $attributes['name'][$i];
                 $newFilePath = __DIR__ . '/.././storage/' . $path . $name;
                 //Upload the file into the temp dir
                 if (move_uploaded_file($tmpFilePath, $newFilePath)) {
@@ -47,7 +47,7 @@ class Config
 
     public function unlinkFile($path, $name)
     {
-        $target_path = __DIR__ . '/.././storage/'. $path.$name;
+        $target_path = __DIR__ . '/.././storage/' . $path.$name;
         if (!unlink($target_path)) {
             echo "Not Working";
         }

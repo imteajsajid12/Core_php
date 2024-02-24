@@ -12,6 +12,7 @@ class Product_detailsController
         $db = new Database();
         $data = $db->find('shops', $_GET['id']);
 //        return $data;
-        return view('Frontend/product_details.php ', ['data' => $data]);
+        view('Frontend/product_details.php',[
+            'data' => $data]);
     }
 }

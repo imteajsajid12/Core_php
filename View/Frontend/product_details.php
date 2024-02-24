@@ -1,4 +1,7 @@
 <?php
+/** @var array $data */
+$imagess = $data['image'];
+$datas = unserialize($imagess);
 ?>
 <!-- ##### Single Product Details Area Start ##### -->
 <section class="single_product_details_area d-flex align-items-center">
@@ -6,9 +9,9 @@
     <!-- Single Product Thumb -->
     <div class="single_product_thumb clearfix">
         <div class="product_thumbnail_slides owl-carousel">
-            <img src="img/product-img/product-big-1.jpg" alt="">
-            <img src="img/product-img/product-big-2.jpg" alt="">
-            <img src="img/product-img/product-big-3.jpg" alt="">
+            <?php foreach ($datas as $image) : ?>
+                <img src="/storage/shop/<?= $image ?>" alt="">
+            <?php endforeach; ?>
         </div>
     </div>
 
@@ -16,26 +19,34 @@
     <div class="single_product_desc clearfix">
         <span>mango</span>
         <a href="cart.html">
-            <h2>One Shoulder Glitter Midi Dress</h2>
+            <h2><?= $data['name'] ?>
         </a>
-        <p class="product-price"><span class="old-price">$65.00</span> $49.00</p>
-        <p class="product-desc">Mauris viverra cursus ante laoreet eleifend. Donec vel fringilla ante. Aenean finibus velit id urna vehicula, nec maximus est sollicitudin.</p>
+        <p class="product-price"><span class="old-price"><?= $data['price'] ?></span> <?= $data['new_price'] ?></p>
+        <p class="product-desc"><?= $data['details'] ?></p>
 
         <!-- Form -->
-        <form class="cart-form clearfix" method="post">
+        <form class="cart-form clearfix" method="post" action="/shop/cart">
+            <div class="select-box d-flex mt-50 mb-30">
+                <h5 class="mr-3" for="quantity">Quantity:</h5>
+                <input type="number" class="form-control" id="quantity" name="quantity" value="1">
+                <input hidden="hidden" type="number" class="form-control" id="id" name="id" value="<?= $data['id'] ?>">
+
+            </div>
             <!-- Select Box -->
             <div class="select-box d-flex mt-50 mb-30">
-                <select name="select" id="productSize" class="mr-5">
-                    <option value="value">Size: XL</option>
-                    <option value="value">Size: X</option>
-                    <option value="value">Size: M</option>
-                    <option value="value">Size: S</option>
+                <h5 class="mr-3">size:</h5>
+                <select name="size"  id="productSize" class="mr-5">
+                    <option value="value">XL</option>
+                    <option value="value">X</option>
+                    <option value="value"> M</option>
+                    <option value="value"> S</option>
                 </select>
-                <select name="select" id="productColor">
-                    <option value="value">Color: Black</option>
-                    <option value="value">Color: White</option>
-                    <option value="value">Color: Red</option>
-                    <option value="value">Color: Purple</option>
+                <h5 class="mr-3">color:</h5>
+                <select name="color" id="productColor">
+                    <option value="value">Black</option>
+                    <option value="value"> White</option>
+                    <option value="value"> Red</option>
+                    <option value="value">Purple</option>
                 </select>
             </div>
             <!-- Cart & Favourite Box -->

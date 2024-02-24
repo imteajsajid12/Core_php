@@ -82,6 +82,10 @@ $router->post('/shop/cart',[ new Controller\CartController,'create'])->auth('Aut
 $router->get('/cart',[ new Controller\CartController,'index'])->auth('Auth');
 $router->post('/cart/delete',[ new Controller\CartController,'delete'])->auth('Auth');
 
+
+$router->get('/checkout',[ new Controller\checkoutController(),'index'])->auth('Auth');
+$router->post('/checkout/create',[ new Controller\checkoutController(),'create'])->auth('Auth');
+
 $router->get('/product_details',[ new Controller\ShopController,'index']);
 //$router->get('/contact', '/ContactController.php','index');
 //$router->get('/blog', '/BlogController.php','index');
