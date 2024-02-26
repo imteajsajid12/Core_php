@@ -25,7 +25,6 @@ return array_sum(array_column($data, "quantity"));
 
  public function create(){
      try {
-
          $db = new Database();
          $data = $db->find('shops', $_POST['id']);
          $carts = $db->query('select * from carts where product_id = :id and color = :color and size = :size', [
@@ -53,11 +52,11 @@ return array_sum(array_column($data, "quantity"));
 
     public  function delete()
     {
-
         $db = new Database();
         $carts = $db->query("DELETE FROM carts WHERE product_id = ?", [$_POST['id']]);
         \Core\Session::flash('Delete', 'Product Delete Successfully');
         header('Location:/shop');
+        
 
  }
 }

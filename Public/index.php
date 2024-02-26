@@ -28,7 +28,6 @@ unset($_SESSION['__route']["Auths"]);
 
 
 
-
 // $data= [\Http\Controller\DController::class, 'index'] ;
 // call_user_func_array(($data ));
 
