@@ -191,36 +191,36 @@ include __DIR__.'/procted/message.php';
                         <li><span>Total</span> <span>$<?= $data ?></span></li>
                     </ul>
 
-                    <div id="accordion" role="tablist" class="mb-4">
-                        <div class="card">
-                            <form role="form" action="/checkout/create" method="post">
-                            <div class="card-header" role="tab" id="headingOne">
-                                <h6 class="mb-0">
-                                    <button type="submit" class="btn" data-toggle="collapse" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne"><i class="fa fa-circle-o mr-3"></i>Stripe</button>
-                                </h6>
-                            </div>
-                            </form>
-
-
-                            <div class="card-header" role="tab" id="headingOne">
-                                <h6 class="mb-0">
-                                    <a data-toggle="collapse" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne"><i class="fa fa-circle-o mr-3"></i>Paypal</a>
-                                </h6>
-                            </div>
-
-                        </div>
+<!--                    <div id="accordion" role="tablist" class="mb-4">-->
+<!--                        <div class="card">-->
+<!--                            <form role="form" action="/checkout/create" method="post">-->
+<!--                            <div class="card-header" role="tab" id="headingOne">-->
+<!--                                <h6 class="mb-0">-->
+<!--                                    <button type="submit" class="btn" data-toggle="collapse" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne"><i class="fa fa-circle-o mr-3"></i>Stripe</button>-->
+<!--                                </h6>-->
+<!--                            </div>-->
+<!--                            </form>-->
+<!---->
+<!---->
+<!--                            <div class="card-header" role="tab" id="headingOne">-->
+<!--                                <h6 class="mb-0">-->
+<!--                                    <a data-toggle="collapse" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne"><i class="fa fa-circle-o mr-3"></i>Paypal</a>-->
+<!--                                </h6>-->
+<!--                            </div>-->
+<!---->
+<!--                        </div>-->
 
                         <div class="col-12 mb-4">
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="payment" value="1" id="flexRadioDefault1">
                                 <label class="form-check-label" for="flexRadioDefault1">
-                                    Default radio
+                                   Online Payment
                                 </label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="payment" value="0" id="flexRadioDefault2" checked>
                                 <label class="form-check-label" for="flexRadioDefault2">
-                                    Default checked radio
+                                    Cash On Delivery
                                 </label>
                             </div>
                     </div>

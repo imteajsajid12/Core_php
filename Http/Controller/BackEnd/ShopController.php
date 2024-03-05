@@ -25,6 +25,7 @@ class ShopController
 
     public function create()
     {
+
         $image = [];
         $errors = [];
         $validations = Validation::validation([
@@ -55,6 +56,7 @@ class ShopController
         try {
             $data= new Database();
             $validations['data']['image'] =serialize($image);
+
             $data->insert('shops', $validations['data']);
             \Core\Session::flash('Success', 'Homepage created successfully');
             header("Location:/Admin/shop");

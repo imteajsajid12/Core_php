@@ -24,6 +24,13 @@ $router->get('/Admin/shop', [new  Controller\BackEnd\ShopController(),'update'])
 $router->post('/Admin/shop/delete', [new  Controller\BackEnd\ShopController(),'delete'])->auth("Admin");
 $router->get('/Admin/test', [new  Controller\BackEnd\ShopController(),'test'])->auth("Admin");
 
+
+
+
+
+$router->get('/Admin/order', [new  Controller\BackEnd\OrderController(),'index'])->auth("Admin");
+
+
 //color//
 //$router->get('/Admin/color', [new  Controller\BackEnd\ShopController(),'index'])->auth("Admin");
 ////size//
@@ -74,6 +81,9 @@ $router->post('/Admin/role/delete', [new Controller\BackEnd\RoleController(),'de
 $router->get('/',[ new Controller\HomeController(),'index']);
 $router->get('/login',[ new Controller\LoginController(),'index']);
 $router->post('/login',[ new Controller\LoginController(),'create']);
+$router->post('/logout', [new  Controller\BackEnd\LoginController(),'logout']);
+
+
 $router->get('/shop',[ new Controller\ShopController,'index']);
 //protected details
 $router->get('/product_details',[ new Controller\Product_detailsController(),'index']);
@@ -85,8 +95,10 @@ $router->post('/cart/delete',[ new Controller\CartController,'delete'])->auth('A
 
 $router->get('/checkout',[ new Controller\checkoutController(),'index'])->auth('Auth');
 $router->post('/checkout/create',[ new Controller\checkoutController(),'create'])->auth('Auth');
+$router->get('/success/payment',[ new Controller\checkoutController(),'payment'])->auth('Auth');
 
 $router->get('/product_details',[ new Controller\ShopController,'index']);
+
 //$router->get('/contact', '/ContactController.php','index');
 //$router->get('/blog', '/BlogController.php','index');
 //$router->get('/', '/Controller.php','index');

@@ -33,8 +33,7 @@ class Config
             $tmpFilePath = $attributes['tmp_name'][$i];
             //Make sure we have a file path
             if ($tmpFilePath != "") {
-                //Setup our new file path
-                $name= Config . phprand(10, 1000) . $attributes['name'][$i];
+                $name= rand(10,100).$attributes['name'][$i];
                 $newFilePath = __DIR__ . '/.././storage/' . $path . $name;
                 //Upload the file into the temp dir
                 if (move_uploaded_file($tmpFilePath, $newFilePath)) {

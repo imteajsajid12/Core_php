@@ -54,7 +54,7 @@ $total_quantity = array_sum(array_column($carts, "quantity"));
                 <li><span>total:</span> <span><?= $total ?></span></li>
             </ul>
             <div class="checkout-btn mt-100">
-                <a href="checkout.html" class="btn essence-btn">check out</a>
+                <a href="/checkout" class="btn essence-btn">check out</a>
             </div>
         </div>
     </div>

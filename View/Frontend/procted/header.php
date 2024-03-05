@@ -1,5 +1,6 @@
 <?php
 $carts = (new \Http\Controller\CartController())->count_cart();
+$auth_name = $_SESSION['auth']['name'] ?? null;
 ?>
 
 
@@ -8,7 +9,7 @@ $carts = (new \Http\Controller\CartController())->count_cart();
         <!-- Classy Menu -->
         <nav class="classy-navbar" id="essenceNav">
             <!-- Logo -->
-            <a class="nav-brand" href="index.html"><img src="/View/Frontend/App/img/core-img/logo.png" alt=""></a>
+            <a class="nav-brand" href="/"><img src="/View/Frontend/App/img/core-img/logo.png" alt=""></a>
             <!-- Navbar Toggler -->
             <div class="classy-navbar-toggler">
                 <span class="navbarToggler"><span></span><span></span><span></span></span>
@@ -22,36 +23,36 @@ $carts = (new \Http\Controller\CartController())->count_cart();
                 <!-- Nav Start -->
                 <div class="classynav">
                     <ul>
-                        <li><a href="#">Shop</a>
-                            <div class="megamenu">
-                                <ul class="single-mega cn-col-4">
-                                    <li class="title">Women's Collection</li>
-                                    <li><a href="shop.html">Dresses</a></li>
-                                    <li><a href="shop.html">Blouses &amp; Shirts</a></li>
-                                    <li><a href="shop.html">T-shirts</a></li>
-                                    <li><a href="shop.html">Rompers</a></li>
-                                    <li><a href="shop.html">Bras &amp; Panties</a></li>
-                                </ul>
-                                <ul class="single-mega cn-col-4">
-                                    <li class="title">Men's Collection</li>
-                                    <li><a href="shop.html">T-Shirts</a></li>
-                                    <li><a href="shop.html">Polo</a></li>
-                                    <li><a href="shop.html">Shirts</a></li>
-                                    <li><a href="shop.html">Jackets</a></li>
-                                    <li><a href="shop.html">Trench</a></li>
-                                </ul>
-                                <ul class="single-mega cn-col-4">
-                                    <li class="title">Kid's Collection</li>
-                                    <li><a href="shop.html">Dresses</a></li>
-                                    <li><a href="shop.html">Shirts</a></li>
-                                    <li><a href="shop.html">T-shirts</a></li>
-                                    <li><a href="shop.html">Jackets</a></li>
-                                    <li><a href="shop.html">Trench</a></li>
-                                </ul>
-                                <div class="single-mega cn-col-4">
-                                    <img src="/View/Frontend/App/img/bg-img/bg-6.jpg" alt="">
-                                </div>
-                            </div>
+                        <li><a href="/shop">Shop</a>
+<!--                            <div class="megamenu">-->
+<!--                                <ul class="single-mega cn-col-4">-->
+<!--                                    <li class="title">Women's Collection</li>-->
+<!--                                    <li><a href="shop.html">Dresses</a></li>-->
+<!--                                    <li><a href="shop.html">Blouses &amp; Shirts</a></li>-->
+<!--                                    <li><a href="shop.html">T-shirts</a></li>-->
+<!--                                    <li><a href="shop.html">Rompers</a></li>-->
+<!--                                    <li><a href="shop.html">Bras &amp; Panties</a></li>-->
+<!--                                </ul>-->
+<!--                                <ul class="single-mega cn-col-4">-->
+<!--                                    <li class="title">Men's Collection</li>-->
+<!--                                    <li><a href="shop.html">T-Shirts</a></li>-->
+<!--                                    <li><a href="shop.html">Polo</a></li>-->
+<!--                                    <li><a href="shop.html">Shirts</a></li>-->
+<!--                                    <li><a href="shop.html">Jackets</a></li>-->
+<!--                                    <li><a href="shop.html">Trench</a></li>-->
+<!--                                </ul>-->
+<!--                                <ul class="single-mega cn-col-4">-->
+<!--                                    <li class="title">Kid's Collection</li>-->
+<!--                                    <li><a href="shop.html">Dresses</a></li>-->
+<!--                                    <li><a href="shop.html">Shirts</a></li>-->
+<!--                                    <li><a href="shop.html">T-shirts</a></li>-->
+<!--                                    <li><a href="shop.html">Jackets</a></li>-->
+<!--                                    <li><a href="shop.html">Trench</a></li>-->
+<!--                                </ul>-->
+<!--                                <div class="single-mega cn-col-4">-->
+<!--                                    <img src="/View/Frontend/App/img/bg-img/bg-6.jpg" alt="">-->
+<!--                                </div>-->
+<!--                            </div>-->
                         </li>
                         <li><a href="#">Pages</a>
                             <ul class="dropdown">
@@ -93,9 +94,17 @@ $carts = (new \Http\Controller\CartController())->count_cart();
                         <img src="/View/Frontend/App/img/core-img/user.svg" alt="">
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                        <button class="dropdown-item" type="button">Action</button>
-                        <button class="dropdown-item" type="button">Another action</button>
-                        <button class="dropdown-item" type="button">Something else here</button>
+                        <form class="form-horizontal login-form" method="post" action="/logout">
+
+                            <?php if (empty($auth_name)) : ?>
+                                <a href="/login" class="dropdown-item btn login-btn" type="button">Login</a>
+                            <?php endif; ?>
+                            <?php if (!empty($auth_name)) : ?>
+                                <button type="submit" class="dropdown-item" type="button"><?= $auth_name ?></button>
+                                <button type="submit" class="dropdown-item" type="button">Logout</button>
+                            <?php endif; ?>
+                        </form>
+
                     </div>
 
             </div>

@@ -1,7 +1,4 @@
-<?php
-print_r( $_SESSION['auth']);
-print_r( $_SESSION['Auth']);
-?>
+
 
 <style>
     .divider:after,
